@@ -1,0 +1,16 @@
+{
+    "name": "AnywhereMonitor",
+    "version": "1.0.0",
+    "author": "frank fan",
+    "description": "The monitor based on Wechat!",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+    	"body-parser" : "*",
+        "express" : "4.*",
+        "request" : "*",
+        "ezcrypto": "*"
+    }
+}
+
