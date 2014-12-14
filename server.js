@@ -1,7 +1,9 @@
-var config = require('./config.json');
-var express = require('express'),
+var config = require('./config.json'),
+    cache = require('./cache/cache.json'),
+    express = require('express'),
     bodyParser = require('body-parser'),
-    WeixinAPI = require('./WeixinAPI'),
+    WeixinAPI = require('./lib/WeixinAPI'),
+    cacheService = require('./lib/cacheService'),
     app = express();
 
 // 解析器
@@ -42,6 +44,7 @@ app.post('/weixin/news/send', function(req, res) {
     var text = "";
     var touser = "";
     var toparty = "";
+    var agentid = "";
 
     if(req.body.title){
         title = req.body.title;
@@ -50,24 +53,32 @@ app.post('/weixin/news/send', function(req, res) {
         text = req.body.text;
     }
     if(req.body.touser){
-        touser = req.body.touser;
+        touser = req.body.touser.toLowerCase();
     }
     if(req.body.toparty){
         toparty = req.body.toparty;
     }
+    if(req.body.agentid){
+        agentid = req.body.agentid;
+    }
 
-    var articles = [
-      {
+    var article = {
         "title": title,
         "description": text,
         "url": "",
         "picurl": ""
-      }
-      ];
+      };
 
-      console.log(articles);
+    var articles = [];
+    articles.push(article);
 
-        WeixinAPI.sendNews(touser,toparty,articles,function(err,response,data){
+    cache.push(article);
+
+    cacheService.cahce("w", "/cache/cache.json", cache);
+
+    console.log(articles);
+
+        WeixinAPI.sendNews(touser,toparty,agentid,articles,function(err,response,data){
         if(err){
             res.status(500).send("Error!"+err);
         }
@@ -89,18 +100,22 @@ app.post('/weixin/text/send', function(req, res) {
     var text = "";
     var touser = "";
     var toparty = "";
+    var agentid = "";
 
     if(req.body.text){
         text = req.body.text;
     }
     if(req.body.touser){
-        touser = req.body.touser;
+        touser = req.body.touser.toLowerCase();
     }
     if(req.body.toparty){
         toparty = req.body.toparty;
     }
+    if(req.body.agentid){
+        agentid = req.body.agentid;
+    }
 
-    WeixinAPI.sendText(touser,toparty,text,function(err,response,data){
+    WeixinAPI.sendText(touser,toparty,agentid, text,function(err,response,data){
         if(err){
             res.status(500).send("Error!"+err);
         }

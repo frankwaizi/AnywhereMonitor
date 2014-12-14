@@ -1,9 +1,8 @@
 {
 	"wechatToken": "monitor",
-	"EncodingAESKey": "YYH8aTmHwC2wyzGngqv2Pld4PkH3iRf7bG2j4lLSuYv",
+	"EncodingAESKey": "3PosgxKRAYmcd2n9ya32UROoCAUvoEegAC3uK5WdXOd",
 
 	"owner" : "Enterprise",
 	"corpid" : "wx352de453e567489c",
-	"corpsecret" : "KztKhPF8jo5awYt-ftLfdQ9xeislGs0mIszctFlvieU",
-	"agentid" : "10"
+	"corpsecret" : "KztKhPF8jo5awYt-ftLfdQ9xeislGs0mIszctFlvieU"
 }
