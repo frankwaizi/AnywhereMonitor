@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, height=device-height, maximum-scale=1.0, minimum-scale=1.0, initial-scale=1.0">
+
+		<title>WeChat Monitor Alerts</title>
+	</head>
+	<body>
+    <div>
+		<center><h3><p id="title"></p></h3></center>
+		<p style="word-wrap: break-word" id="content"></p>
+    </div>
+		<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+		<script>
+		function getParameter() {
+			var theGeturl = window.location.search;
+        	//获取url中"?"符后的字串
+        	var theRequest = new Object();
+        	if (theGeturl.indexOf("?") != -1) {
+        	  var strUrl = theGeturl.substr(1);
+        	  var strs = strUrl.split("&");
+        	  for (var ind = 0; ind < strs.length; ind++) {
+        	    theRequest[strs[ind].split("=")[0]] = unescape(strs[ind].split("=")[1]);
+        	  }
+        	}
+        	return theRequest;
+        }
+
+        var param = getParameter();
+        var type = param["type"];
+        var msgid = param["msgid"];
+        $.ajax({
+          url : "./alert",
+          data : {username: "frankwechat", password: "testwechat", type: type, msgid: msgid},
+          type : "POST",
+          cache : false
+        }).done(function(resData){
+        	$('#title').text(resData.title);
+        	$('#content').text(resData.msg);
+        }).fail(function(err){
+        	alert("err"+err);
+        });
+		</script>
+	</body>
+</html>

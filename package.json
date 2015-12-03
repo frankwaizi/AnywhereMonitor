@@ -1,16 +1,30 @@
 {
-    "name": "AnywhereMonitor",
-    "version": "1.0.0",
-    "author": "frank fan",
-    "description": "The monitor based on Wechat!",
-    "scripts": {
-        "start": "node server.js"
-    },
-    "dependencies": {
-    	"body-parser" : "*",
-        "express" : "4.*",
-        "request" : "*",
-        "ezcrypto": "*"
-    }
+  "name": "WeChatMonitor",
+  "version": "1.0.0",
+  "description": "WeChat Monitor Middleware via WeChat Enterprise Account",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frankwaizi/WeChatMonitor.git"
+  },
+  "keywords": [
+    "wechat",
+    "monitor",
+    "enterprise"
+  ],
+  "author": "Frank Fan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/frankwaizi/WeChatMonitor/issues"
+  },
+  "homepage": "https://github.com/frankwaizi/WeChatMonitor#readme",
+  "dependencies": {
+    "anychat-enterprise": "0.0.6",
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "serve-static": "^1.10.0"
+  }
 }
-

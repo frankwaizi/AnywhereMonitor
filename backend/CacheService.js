@@ -1,10 +1,10 @@
 var fs = require('fs');
 
 var output = {
-    cache: function(mode, path, data) {
+    cache: function(path, data) {
         var file = fs.realpathSync('.') + path;
         console.log(file);
-        fs.open(file, mode, function(e,fd){
+        fs.open(file,"w",function(e,fd){
             if(e){
                 // throw e;
             } else {
